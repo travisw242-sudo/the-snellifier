@@ -7,6 +7,7 @@ import { queenGambitWhiteCourse } from './courses/queen-gambit-white-course.mjs'
 import { hippopotamusCourse } from './courses/hippopotamus-course.mjs';
 import { italianGameCourse } from './courses/italian-game-course.mjs';
 import { ruyLopezCourse } from './courses/ruy-lopez-course.mjs';
+import { viennaGameCourse } from './courses/vienna-game-course.mjs';
 
 const repertoire = [
   {
@@ -423,6 +424,7 @@ export const courses = [
   { ...hippopotamusCourse, openingId: 'hippo' },
   { ...italianGameCourse, openingId: 'italian' },
   { ...ruyLopezCourse, openingId: 'ruy-lopez' },
+  viennaGameCourse,
 ].map(course => ({
   ...course,
   lessons: course.lessons.map(lesson => compileLine({

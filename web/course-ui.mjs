@@ -50,15 +50,16 @@ function courseCoverBoard(course) {
 export function renderCourseOutline(course, progress) {
   const track = courseTrack(course, progress);
   const lessons = courseLessons(course, track);
+  const chapters = course.chapters.filter(chapter => lessons.some(lesson => lesson.chapter === chapter.id));
   const completed = lessons.filter(lesson => progress.lines[lesson.id]?.count).length;
   const mastered = lessons.filter(lesson => lineMastery(progress, lesson) === 'mastered').length;
   const next = nextCourseLesson(lessons, progress);
-  const nextChapter = next?.chapter ?? course.chapters[0].id;
+  const nextChapter = next?.chapter ?? chapters[0]?.id;
 
   return `<a class="course-back text-button" href="#courses">Opening courses</a>
     <div class="card course-cover">
       <div class="course-cover-copy">
-        <p class="course-side">Play as ${sides[course.side]} · ${course.chapters.length} chapters</p>
+        <p class="course-side">Play as ${sides[course.side]} · ${chapters.length} chapters</p>
         <h1>${course.title}<span>.</span></h1>
         <p>${course.description}</p>
       </div>
@@ -84,7 +85,7 @@ export function renderCourseOutline(course, progress) {
     </section>
     <section aria-labelledby="syllabus-heading" class="course-syllabus">
       <h2 id="syllabus-heading">Course outline</h2>
-      ${course.chapters.map(chapter => {
+      ${chapters.map(chapter => {
         const chapterLessons = lessons.filter(lesson => lesson.chapter === chapter.id);
         const done = chapterLessons.filter(lesson => progress.lines[lesson.id]?.count).length;
         return `<details class="card course-chapter"${nextChapter === chapter.id ? ' open' : ''}>

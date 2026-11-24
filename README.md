@@ -18,7 +18,7 @@ The app requires Windows 11 and uses the Microsoft Edge WebView2 Runtime include
 
 ## Train
 
-- Learn five annotated courses, including the Italian Game, Ruy Lopez, and Hippopotamus Defense.
+- Learn six annotated courses, including the Vienna Game, Italian Game, and Ruy Lopez.
 - Review completed lines on a spaced schedule and track first-try recall.
 - Use Mixed Recall to test positions from your repertoire with the line names hidden.
 
