@@ -1,48 +1,37 @@
-# The Snellifier
+# The Snellifier for Windows
 
-The Snellifier helps you learn chess openings on a playable board. Study the idea behind each move, recall the line from memory, and practice the positions you tend to miss.
+The Snellifier is an offline chess opening trainer for Windows. Study the idea behind each move, recall the line from memory, and practice the positions you tend to miss.
 
-**[Play The Snellifier](https://opening-lab.nananaor.chatgpt.site/)**
+**[Download the Windows installer](https://github.com/travisw242-sudo/the-snellifier/releases/latest)**
+
+## Install
+
+1. Open the latest release and download the setup file for your PC.
+2. Run the setup file and open **The Snellifier** from the Start menu.
+
+| PC | Installer |
+| --- | --- |
+| Intel or AMD | `The-Snellifier-Setup-x64.exe` |
+| Windows on Arm | `The-Snellifier-Setup-arm64.exe` |
+
+The app requires Windows 11 and uses the Microsoft Edge WebView2 Runtime included with Windows 11. The installers are unsigned. Your training progress is saved in your Windows user profile.
+
+## Train
 
 - Learn five annotated courses, including the Italian Game, Ruy Lopez, and Hippopotamus Defense.
 - Review completed lines on a spaced schedule and track first-try recall.
 - Use Mixed Recall to test positions from your repertoire with the line names hidden.
 
-The trainer runs in the browser and saves progress in that browser profile.
+## Develop
 
-## Run locally
-
-Use Node.js 24 or newer and run this command from the repository root.
-
-```sh
-npm run dev
-```
-
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Refresh the browser after saving a change.
-
-```sh
-npm test        # Validate the course data and recall rules
-npm run build   # Copy the deployable site to dist/
-npm run check   # Run both checks
-```
-
-## Project layout
+Use Node.js 24 or newer. Run `npm run dev` and open [http://127.0.0.1:8000](http://127.0.0.1:8000) to preview changes to the shared trainer. Run `npm run check` before opening a pull request.
 
 | Path | What to edit |
 | --- | --- |
-| [web/](web/) | The trainer, board interaction, chess rules, and review logic |
-| [web/courses/](web/courses/) | Course chapters, lines, and move explanations |
-| [web/data/](web/data/) | Repertoire branches, opening plans, and opponent move samples |
-| [platforms/](platforms/) | Offline Windows and iPhone wrappers |
-| [test/](test/) | Checks for playable lines, course depth, and recall eligibility |
+| [platforms/windows/](platforms/windows/) | Windows launcher and installer |
+| [web/](web/) | Trainer interface, board, and recall logic |
+| [web/courses/](web/courses/) | Opening lines and move explanations |
+| [web/data/](web/data/) | Variations, opening plans, and opponent replies |
+| [test/](test/) | Course and recall checks |
 
-## Contribute
-
-Create a branch for your change and open a pull request. Run `npm run check` before submitting. For a new or edited opening line, include the move sequence and explain what the player should learn from it.
-
-The public app is served from the existing ChatGPT Sites host. GitHub checks pull requests. Publishing a release is a separate step.
-
-## Native builds
-
-- [Build the Windows app](docs/windows.md)
-- [Open the iPhone project in Xcode](platforms/ios/README.md)
+[Build a Windows installer](docs/windows.md)

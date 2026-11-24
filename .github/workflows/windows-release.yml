@@ -1,0 +1,66 @@
+name: Windows release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.27.x'
+          cache-dependency-path: platforms/windows/go.sum
+      - run: npm test
+      - run: npm ci --prefix platforms
+      - name: Build Windows installers
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF_NAME.Substring(1)
+          ./platforms/windows/build-installer.ps1 -Version $version -Architecture x64
+          ./platforms/windows/build-installer.ps1 -Version $version -Architecture arm64
+      - name: Verify x64 install and uninstall
+        shell: pwsh
+        run: ./platforms/windows/test-installer.ps1 -Installer ./release/The-Snellifier-Setup-x64.exe
+      - uses: actions/upload-artifact@v6
+        with:
+          name: windows-installers
+          path: release/The-Snellifier-Setup-*.exe
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          name: windows-installers
+          path: installers
+      - name: Publish installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/release-notes.md" <<'NOTES'
+          Download the x64 setup for an Intel or AMD PC, or the ARM64 setup for a Windows on Arm PC.
+
+          The installer adds The Snellifier to the Start menu. Courses, reviews, and Mixed Recall are available offline. Windows progress stays in your Windows user profile.
+
+          The setup files are unsigned.
+          NOTES
+          gh release create "$GITHUB_REF_NAME" \
+            --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "The Snellifier $GITHUB_REF_NAME" \
+            --notes-file "$RUNNER_TEMP/release-notes.md" \
+            installers/The-Snellifier-Setup-x64.exe \
+            installers/The-Snellifier-Setup-arm64.exe

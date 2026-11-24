@@ -63,7 +63,7 @@ func run() error {
 	}
 	assets := filepath.Join(filepath.Dir(executable), "Web")
 	if _, err := os.Stat(filepath.Join(assets, "index.html")); err != nil {
-		return fmt.Errorf("Extract the full ZIP before opening The Snellifier. Keep the Web folder beside The Snellifier.exe")
+		return fmt.Errorf("The Snellifier’s app files are missing. Reinstall the app or keep the Web folder beside The Snellifier.exe")
 	}
 
 	if version, err := webviewloader.GetAvailableCoreWebView2BrowserVersionString(""); err != nil || version == "" {
