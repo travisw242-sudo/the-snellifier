@@ -36,6 +36,9 @@ try {
         $env:GOARCH = if ($Architecture -eq 'x64') { 'amd64' } else { 'arm64' }
         $env:CGO_ENABLED = '0'
 
+        & go mod download
+        if ($LASTEXITCODE -ne 0) { throw 'Could not download the Go dependencies and license files.' }
+
         & go build -trimpath -ldflags '-s -w -H windowsgui' -o (Join-Path $payload 'The Snellifier.exe') .
         if ($LASTEXITCODE -ne 0) { throw "Could not build the $Architecture launcher." }
 
