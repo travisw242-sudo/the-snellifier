@@ -1,0 +1,113 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		A11000000000000000000001 = {isa = PBXBuildFile; fileRef = A11000000000000000000005; };
+		A11000000000000000000002 = {isa = PBXBuildFile; fileRef = A11000000000000000000006; };
+		A11000000000000000000003 = {isa = PBXBuildFile; fileRef = A11000000000000000000007; };
+		A11000000000000000000004 = {isa = PBXBuildFile; fileRef = A11000000000000000000008; };
+		A11000000000000000000005 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningLabApp.swift; sourceTree = "<group>"; };
+		A11000000000000000000006 = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A11000000000000000000007 = {isa = PBXFileReference; lastKnownFileType = folder; path = Web; sourceTree = "<group>"; };
+		A11000000000000000000008 = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A11000000000000000000009 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpeningLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1100000000000000000000A = {
+			isa = PBXGroup;
+			children = (A1100000000000000000000B, A1100000000000000000000C);
+			sourceTree = "<group>";
+		};
+		A1100000000000000000000B = {
+			isa = PBXGroup;
+			children = (A11000000000000000000005, A11000000000000000000006, A11000000000000000000007, A11000000000000000000008);
+			path = OpeningLab;
+			sourceTree = "<group>";
+		};
+		A1100000000000000000000C = {
+			isa = PBXGroup;
+			children = (A11000000000000000000009);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1100000000000000000000D = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (A11000000000000000000001);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1100000000000000000000E = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1100000000000000000000F = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (A11000000000000000000002, A11000000000000000000003, A11000000000000000000004);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A11000000000000000000010 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A11000000000000000000014;
+			buildPhases = (A1100000000000000000000D, A1100000000000000000000E, A1100000000000000000000F);
+			buildRules = ();
+			dependencies = ();
+			name = OpeningLab;
+			productName = OpeningLab;
+			productReference = A11000000000000000000009;
+			productType = "com.apple.product-type.application";
+		};
+		A11000000000000000000011 = {
+			isa = PBXProject;
+			attributes = {LastUpgradeCheck = 1600; };
+			buildConfigurationList = A11000000000000000000013;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = A1100000000000000000000A;
+			productRefGroup = A1100000000000000000000C;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (A11000000000000000000010);
+		};
+		A11000000000000000000013 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (A11000000000000000000015, A11000000000000000000016);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A11000000000000000000014 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (A11000000000000000000017, A11000000000000000000018);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A11000000000000000000015 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 16.4; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; };
+			name = Debug;
+		};
+		A11000000000000000000016 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 16.4; SWIFT_COMPILATION_MODE = wholemodule; };
+			name = Release;
+		};
+		A11000000000000000000017 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A11000000000000000000019;
+			buildSettings = {};
+			name = Debug;
+		};
+		A11000000000000000000018 = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A11000000000000000000019;
+			buildSettings = {DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; };
+			name = Release;
+		};
+		A11000000000000000000019 = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OpeningLab.xcconfig; sourceTree = SOURCE_ROOT; };
+	};
+	rootObject = A11000000000000000000011;
+}

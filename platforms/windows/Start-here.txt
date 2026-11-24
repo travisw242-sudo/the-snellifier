@@ -1,0 +1,13 @@
+The Snellifier for Windows
+
+1. Extract the whole ZIP to a folder on your PC.
+2. Open The Snellifier.exe. Keep the Web folder beside it.
+
+The courses, board and Mixed Recall work offline. Progress stays in your
+Windows user profile and starts separately from your browser progress.
+
+The Snellifier uses Microsoft Edge WebView2, which comes with Windows 11.
+If the app reports that the runtime is missing, get the Evergreen Runtime
+from https://developer.microsoft.com/microsoft-edge/webview2/
+
+This portable release is unsigned. There is no installer.

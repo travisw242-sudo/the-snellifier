@@ -1,0 +1,90 @@
+export const mainPlans = {
+  italian: {
+    w: 'Develop the bishop to c4, use c3 to prepare d4, and open the center while the pieces are active.',
+    b: 'Develop quickly against e4 and f2. Trade on d4 when White opens the center, then use the new lines for active piece play.',
+  },
+  'ruy-lopez': {
+    w: 'Use Bb5 to pressure the knight defending e5. Castle and support e4 with Re1 before deciding how to build the pawn center.',
+    b: 'Keep e5 defended, ask the bishop to move with …a6, and develop the kingside so the king can castle.',
+  },
+  london: {
+    w: 'Get the dark-squared bishop out to f4 before e3. Build the c3–d4–e3 pawn triangle and develop behind it.',
+    b: 'Contest d4 with …c5 and develop before the white setup is complete. Watch for chances to pressure b2 or e4.',
+  },
+  'caro-kann': {
+    w: 'Build a two-pawn center, develop with Nc3, and recapture on e4 with a centralized knight.',
+    b: 'Use …c6 to prepare …d5. Exchange on e4 and bring the light-squared bishop outside the pawn chain with …Bf5.',
+  },
+  sicilian: {
+    w: 'Open the center with d4, recapture with the knight, and use early development to pressure Black’s position.',
+    b: 'Exchange the c-pawn for a central pawn. Attack e4 with …Nf6 and use …a6 to control b5 and prepare queenside play.',
+  },
+  'queens-gambit': {
+    w: 'Use c4 and Nc3 to pressure d5. Pin the f6-knight with Bg5 and develop before deciding whether to exchange in the center.',
+    b: 'Maintain the d5-pawn, break the pin with …Be7, and castle before looking for a freeing pawn break such as …c5.',
+  },
+  scotch: {
+    w: 'Open the center early with d4, exchange on c6 to change Black’s pawn structure, and gain time with e5.',
+    b: 'Use active pieces to put pressure on e4. After the exchange on c6, use the queen to pin the advanced e-pawn.',
+  },
+  'queens-gambit-accepted': {
+    w: 'Offer the c-pawn, develop with Nf3 and e3, and recover the pawn with Bxc4. Castle and keep e4 as a central break.',
+    b: 'Exchange on c4 to draw White’s pieces forward. Develop briskly and challenge d4 with …c5 rather than spending tempi on the pawn.',
+  },
+  english: {
+    w: 'Control d5 with c4 and Nc3. Put the bishop on g2 and use the long diagonal after the center opens.',
+    b: 'Take space with …e5 and use …d5 to challenge the c4-pawn. Keep the pieces active when the center is exchanged.',
+  },
+  french: {
+    w: 'Take space with e5. Reinforce the base of the pawn chain on d4 and develop behind it.',
+    b: 'Attack the base of the pawn chain with …c5, then increase pressure with …Nc6 and …Qb6.',
+  },
+  'kings-indian': {
+    w: 'Build a broad center with c4, d4 and e4. Develop and castle before deciding how to meet the central break.',
+    b: 'Fianchetto the kingside bishop, castle, then use …e5 and …Nc6 to contest the center.',
+  },
+  scandinavian: {
+    w: 'Use Nc3 to develop with tempo against the queen, then build a d4 center and develop the kingside.',
+    b: 'Challenge e4 immediately. After the queen retreats, develop the knights and bishops and keep the center under pressure.',
+  },
+};
+
+export const branchOpponentPlans = {
+  'italian-two-knights': 'Attack e4 before playing …Bc5. Develop with tempo where possible and castle before opening the position.',
+  'italian-hungarian': 'Develop securely with …Be7 and support e5 with …d6. Castle and keep the center solid.',
+  'italian-pianissimo': 'Match White’s quiet development, keep e5 defended, and wait for the right moment to open the center.',
+  'italian-paris': 'Keep e5 secure with …d6. If White challenges it immediately, exchange and target the pawn on e4.',
+  'ruy-berlin': 'Pressure e4 with …Nf6 and take the pawn if White castles. Be ready to trade into a queenless position.',
+  'ruy-schliemann': 'Use …f5 and …d5 to open the center and gain time against the knights. Look for active queen play.',
+  'ruy-fianchetto': 'Use the bishop on g7 to support the center. If White gambits a pawn, weigh the extra material against White’s development.',
+  'london-early-c5': 'Attack d4 with …c5 and …Nc6. Bring the queen to b6 to create a second target on b2.',
+  'london-counter-c4': 'Challenge d4 early with …c5 and defend d5 with …e6. Develop and use the open files after the central exchanges.',
+  'london-c6': 'Reinforce d5 with …c6 and get the bishop to f5 before playing …e6.',
+  'london-e6': 'Support d5 and attack d4 with …c5 and …Nc6. Find a useful route for the c8-bishop later.',
+  'caro-advance': 'Gain space with e5 and defend d4. Develop before Black can put too much pressure on the base of the pawn chain.',
+  'caro-exchange': 'Exchange on d5, support d4 with c3, and point the bishop at h7 from d3.',
+  'caro-nd2': 'Keep the c-pawn free with Nd2 and centralize the knight after the e4 exchange. Use Ng3 to gain time against the bishop.',
+  'sicilian-alapin': 'Prepare d4 with c3. If the knight attacks e4, gain space and a tempo with e5.',
+  'sicilian-dragon': 'Develop Be3 and Qd2 to coordinate the pieces. Use f3 to stabilize e4 and keep queenside castling available.',
+  'sicilian-closed': 'Keep the center flexible and fianchetto the bishop. Build toward play on the kingside with a secure e4-pawn.',
+  'qgd-exchange': 'Create an asymmetric pawn structure by exchanging on d5. Develop before choosing a queenside or central pawn break.',
+  'qgd-ragozin': 'Develop both knights, support d4, and use Bg5 to put pressure on the f6-knight while Black pins Nc3.',
+  'qgd-catalan': 'Use the g2-bishop to pressure the queenside. If Black takes on c4, bring the queen to c2 to recover the pawn.',
+  'scotch-classical': 'Attack the d4-knight with …Bc5 and …Qf6, then complete development and prepare to castle.',
+  'scotch-bishop-check': 'Use …Bb4+ and …Bc5 to pressure d4. Watch for Nxc6 before developing …Nf6, which can leave the c5-bishop undefended.',
+  'qga-slav': 'Support d5 with …c6, take on c4 when it is useful, and develop the bishop outside the pawn chain.',
+  'qga-declined': 'Hold d5 and break the pin with …Be7. Castle and prepare a pawn break once development is complete.',
+  'english-symmetrical': 'Mirror the c-pawn and develop both knights and the g7-bishop. Keep the central pawn breaks flexible.',
+  'english-nf6': 'Develop flexibly and fianchetto. Castle and prepare to challenge the center with …e5 or …c5.',
+  'english-e6': 'Build a d5 center with …e6 and …d5. Develop and castle before challenging or exchanging the central pawns.',
+  'french-exchange': 'Open the e-file by exchanging on d5. Develop toward the center and castle without creating a weak pawn.',
+  'french-classical': 'Defend e4 with Nc3, pin the knight with Bg5, and gain space with e5 when the pin is broken.',
+  'french-tarrasch': 'Avoid a pin on Nc3 and keep e4 defended. Exchange on d5 to open lines and use Bb5 to pressure the knight.',
+  'kings-indian-fianchetto': 'Use Bg2 to contest the long diagonal and complete development before committing the e-pawn.',
+  'kings-indian-averbakh': 'Delay Nf3, develop Be2 and Bg5, and keep a strong pawn on d5 if Black challenges the center.',
+  'kings-indian-samisch': 'Use f3 and Be3 to reinforce the center. Keep queenside castling and a kingside pawn advance available.',
+  'scandinavian-qd8': 'Take central space while the queen retreats. Develop actively with Nf3 and Bc4.',
+  'scandinavian-advance': 'Keep the e5-pawn and support it with d4. Develop without allowing Black to undermine the base of the chain.',
+  'scandinavian-nf3': 'Develop and castle quickly while the queen is on d5. Use d4 to claim the center once the king is safe.',
+  'scandinavian-d4': 'Claim d4 early and reinforce it with Nf3 and c3. Break the pin with Be2 and prepare to castle.',
+};

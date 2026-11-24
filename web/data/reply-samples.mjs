@@ -1,0 +1,23 @@
+// Lichess Masters Opening Explorer snapshot, 2026-11-23. Counts are per position.
+export const replySamples = {
+  "italian": {"at": 5, "games": 51257, "replies": [["f8c5", 26897], ["g8f6", 22421], ["f8e7", 1087], ["d7d6", 661]]},
+  "ruy-lopez": {"at": 5, "games": 172668, "replies": [["a7a6", 123590], ["g8f6", 35188], ["f7f5", 4490], ["g7g6", 2974]]},
+  "london": {"at": 3, "games": 77050, "replies": [["g8f6", 56154], ["c7c6", 7851], ["e7e6", 6459], ["c7c5", 2543]]},
+  "caro-kann": {"at": 4, "games": 88187, "replies": [["e4e5", 34936], ["b1c3", 20890], ["e4d5", 17742], ["b1d2", 11940]]},
+  "sicilian": {"at": 2, "games": 627286, "replies": [["g1f3", 519537], ["b1c3", 46925], ["c2c3", 39198]]},
+  "queens-gambit": {"at": 4, "games": 80807, "replies": [["b1c3", 47509], ["g1f3", 31466], ["g2g3", 886], ["c4d5", 778]]},
+  "scotch": {"at": 7, "games": 19929, "replies": [["g8f6", 9390], ["f8c5", 7524], ["f8b4", 1176]]},
+  "queens-gambit-accepted": {"at": 3, "games": 215722, "replies": [["c7c6", 107044], ["e7e6", 76269], ["d5c4", 25393]]},
+  "english": {"at": 1, "games": 206316, "replies": [["g8f6", 57070], ["e7e5", 51781], ["e7e6", 32039], ["c7c5", 23158]]},
+  "french": {"at": 4, "games": 144716, "replies": [["b1c3", 72929], ["b1d2", 45317], ["e4e5", 16495], ["e4d5", 8541]]},
+  "kings-indian": {"at": 8, "games": 77869, "replies": [["g1f3", 29780], ["f1e2", 17638], ["f2f3", 14618]]},
+  "scandinavian": {"at": 4, "games": 17023, "replies": [["b1c3", 15391], ["g1f3", 1219], ["d2d4", 374]]},
+  "hippo": {"at": 4, "games": 37719, "replies": [["b1c3", 24380], ["g1f3", 7752], ["c2c4", 2684]]},
+  "kings-gambit": {"at": 3, "games": 5060, "replies": [["e5f4", 3393], ["d7d5", 910], ["f8c5", 524]]},
+  "evans": {"at": 7, "games": 1767, "replies": [["c5b4", 1526], ["c5b6", 222], ["c5e7", 9]]},
+  "vienna": {"at": 5, "games": 1269, "replies": [["d7d5", 1232], ["d7d6", 32]]},
+  "danish": {"at": 5, "games": 209, "replies": [["d7d5", 102], ["d4c3", 58], ["d8e7", 26]]},
+  "smith-morra": {"at": 5, "games": 2943, "replies": [["d4c3", 1609], ["g8f6", 736], ["d4d3", 359]]},
+  "benko": {"at": 6, "games": 17139, "replies": [["c4b5", 13155], ["g1f3", 2137], ["d1c2", 682]]},
+  "budapest": {"at": 6, "games": 2957, "replies": [["c1f4", 1397], ["g1f3", 961], ["e2e3", 273], ["e2e4", 241]]},
+};

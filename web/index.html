@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131b17">
+  <meta name="description" content="Study classic chess openings, play them from memory, and review them on a spaced schedule.">
+  <title>The Snellifier · Chess opening trainer</title>
+  <link rel="icon" href="./pieces/wn.png" type="image/png">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="#practice" aria-label="The Snellifier home">
+        <span class="brand-mark"><img src="./pieces/bn.png" alt=""></span>
+        <span>The <span class="brand-accent">Snellifier</span><small>CHESS TRAINER</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <p class="nav-heading">TRAINING</p>
+        <a href="#practice" data-page="practice"><span data-icon="target"></span> Practice</a>
+        <a href="#library" data-page="library"><span data-icon="book"></span> Opening library</a>
+        <a href="#courses" data-page="courses"><span data-icon="layers"></span> Courses</a>
+        <a href="#review" data-page="review"><span data-icon="repeat"></span> Review queue <span class="nav-count" id="due-count">0</span></a>
+        <a href="#mixed" data-page="mixed"><span data-icon="shuffle"></span> Mixed recall</a>
+        <a href="#progress" data-page="progress"><span data-icon="chart"></span> My progress</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <section class="daily" aria-label="Daily goal">
+          <div class="daily-top"><span class="daily-icon" data-icon="flag"></span><strong>Daily goal</strong><span id="goal-count">0 / 3</span></div>
+          <div class="meter" id="daily-meter" role="progressbar" aria-label="Daily goal" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span></span></div>
+          <div class="daily-caption">Complete 3 drills today</div>
+        </section>
+        <button class="shortcuts text-button" id="shortcuts" type="button"><span data-icon="keyboard"></span> Keyboard shortcuts</button>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <div class="breadcrumb"><span>Training</span><span data-icon="chevron"></span><strong id="breadcrumb">Practice</strong></div>
+        <div class="metrics" aria-label="Training statistics">
+          <span class="metric streak"><span data-icon="flame"></span><strong id="streak">0</strong><span class="metric-label">day streak</span></span>
+          <span class="metric xp"><span data-icon="zap"></span><strong id="xp">0</strong> XP</span>
+        </div>
+      </header>
+      <div class="content">
+        <section id="practice-page" class="page">
+          <div class="page-heading" id="practice-heading">
+            <div><h1>Opening practice<span>.</span></h1><p>Build your repertoire, one move at a time.</p></div>
+            <a class="button secondary browse" href="#library"><span data-icon="book"></span> Browse openings</a>
+          </div>
+          <div class="page-heading" id="mixed-heading" hidden>
+            <div><h1>Mixed recall<span>.</span></h1><p id="mixed-round-progress"></p></div>
+            <button class="button secondary" id="mixed-end" type="button">End test</button>
+          </div>
+          <div class="workspace">
+            <section class="board-column" aria-label="Practice board">
+              <div class="board-header"><div class="turn"><span id="turn-dot"></span><span id="turn-label">White to move</span></div><span class="board-caption" id="board-side">You play White</span></div>
+              <div class="board-frame">
+                <div id="board" class="board" aria-label="Chessboard"></div>
+              </div>
+              <div class="board-tools">
+                <p class="board-instruction" id="board-instruction">Click or drag a piece to move</p>
+                <div class="board-actions">
+                  <button class="icon-button quick-hint" id="quick-hint" aria-label="Show hint" title="Show hint"><span data-icon="bulb"></span></button>
+                  <button class="icon-button" id="flip" aria-label="Flip board" title="Flip board (F)"><span data-icon="flip"></span></button>
+                  <button class="icon-button" id="restart" aria-label="Restart drill" title="Restart drill (R)"><span data-icon="restart"></span></button>
+                </div>
+              </div>
+            </section>
+            <div class="drill-column" id="practice-controls">
+              <section class="card drill" aria-labelledby="line-title">
+                <div class="drill-heading">
+                  <div class="drill-icon"><img src="./pieces/wn.png" alt=""></div>
+                  <div><div class="eyebrow" id="line-code">C54 · MAIN LINE</div><h2 id="line-title">Italian Game</h2><p id="line-variation">Giuoco Piano</p></div>
+                </div>
+                <div class="course-drill-strip" id="course-drill-strip" hidden>
+                  <span id="course-drill-position"></span>
+                  <a class="text-button" id="course-outline-link" href="#courses">Course outline</a>
+                </div>
+                <section id="branch-context" class="branch-context" aria-labelledby="branch-heading" hidden>
+                  <div class="branch-kicker"><span data-icon="branch"></span> Branch point</div>
+                  <h3 id="branch-heading"></h3>
+                  <p id="branch-plan" hidden></p>
+                  <a class="text-button branch-link" id="branch-back" href="#library">All variations</a>
+                </section>
+                <div class="mode-switch" role="group" aria-label="Training mode">
+                  <button id="recall" type="button" aria-pressed="true"><span data-icon="target"></span> Recall</button>
+                  <button id="study" type="button" aria-pressed="false"><span data-icon="book"></span> Study</button>
+                </div>
+                <div class="drill-progress">
+                  <div class="progress-heading"><span id="progress-label">Drill progress</span><span id="progress-count">0 / 4 moves</span></div>
+                  <div class="segments" id="segments" aria-hidden="true"></div>
+                </div>
+                <div id="feedback" class="feedback" role="status">
+                  <span class="feedback-icon" id="feedback-icon" data-icon="sparkles"></span>
+                  <div><strong id="feedback-title">Find the next move</strong><p id="feedback-text">Play the next move in the line from memory.</p></div>
+                </div>
+                <section id="study-continuation" class="study-continuation" aria-labelledby="study-continuation-title" hidden>
+                  <h3 id="study-continuation-title"></h3>
+                  <p id="study-continuation-text"></p>
+                </section>
+                <button class="button primary branch-switch" id="switch-variation" type="button" hidden>Practice this variation</button>
+                <div id="recall-actions" class="drill-actions">
+                  <button class="button primary" id="hint" type="button"><span data-icon="bulb"></span> <span id="hint-label">Show hint</span></button>
+                  <button class="button secondary" id="reveal" type="button">Reveal move</button>
+                </div>
+                <div id="study-actions" class="drill-actions" hidden>
+                  <button class="button secondary" id="previous" type="button">Previous</button>
+                  <button class="button primary" id="next" type="button">Next move</button>
+                </div>
+                <button class="button primary course-recall" id="course-recall" type="button" hidden>Recall this lesson</button>
+                <div id="drill-summary" class="drill-summary" hidden>
+                  <div><strong id="first-try-count"></strong><span>Recalled on first try</span></div>
+                  <div><strong id="next-review-date"></strong><span>Next review</span></div>
+                </div>
+                <a class="button primary explore-variations" id="explore-variations" href="#library" hidden><span data-icon="branch"></span> Explore variations</a>
+                <div id="complete-actions" class="drill-actions" hidden>
+                  <button class="button secondary" id="retry" type="button">Try again</button>
+                  <button class="button primary" id="next-line" type="button">Next line</button>
+                </div>
+              </section>
+              <section class="card study-guide" id="study-guide" aria-label="Study guide" hidden>
+                <details open>
+                  <summary>Plans for both sides</summary>
+                  <div class="study-plans">
+                    <div><strong>White</strong><p id="white-plan"></p></div>
+                    <div><strong>Black</strong><p id="black-plan"></p></div>
+                  </div>
+                </details>
+                <details>
+                  <summary>All move explanations</summary>
+                  <ol id="study-moves" class="study-moves"></ol>
+                </details>
+              </section>
+              <section class="card notation" aria-labelledby="moves-heading">
+                <div class="notation-header"><h3 id="moves-heading"><span data-icon="layers"></span> Move history</h3><span id="move-count">2 moves played</span></div>
+                <div id="move-history" class="move-history" aria-label="Played moves"></div>
+              </section>
+            </div>
+            <div class="drill-column" id="mixed-controls" hidden>
+              <section class="card drill" aria-labelledby="mixed-prompt-heading">
+                <div class="drill-heading"><h2 id="mixed-prompt-heading">Find your move</h2></div>
+                <div class="drill-progress">
+                  <div class="segments" id="mixed-segments" aria-hidden="true"></div>
+                </div>
+                <div class="feedback" id="mixed-feedback" role="status">
+                  <div><strong id="mixed-feedback-title"></strong><p id="mixed-feedback-text"></p></div>
+                </div>
+                <div class="drill-actions">
+                  <button class="button secondary" id="mixed-reveal" type="button">Reveal move</button>
+                  <button class="button primary" id="mixed-next" type="button" hidden>Next position</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+        <section id="library-page" class="page" hidden>
+          <div class="page-heading"><div><h1>Opening library<span>.</span></h1><p>Learn a main line, then practice how the game can branch.</p></div></div>
+          <div class="filters" role="group" aria-label="Filter openings">
+            <button class="button secondary" data-filter="all" aria-pressed="true">All openings</button>
+            <button class="button secondary" data-filter="w" aria-pressed="false">White</button>
+            <button class="button secondary" data-filter="b" aria-pressed="false">Black</button>
+            <button class="button secondary" data-filter="gambits" aria-pressed="false">Gambits</button>
+          </div>
+          <a class="card library-course-link" id="library-white-course-link" href="#courses/queen-gambit-white">
+            <span data-icon="layers"></span><span><strong>Queen’s Gambit course</strong><small>Play as White · Tracks with 26, 60, or 92 lines</small></span>
+            <span class="library-course-caption">View course</span>
+          </a>
+          <a class="card library-course-link" id="library-course-link" href="#courses/qga-black">
+            <span data-icon="layers"></span><span><strong>Queen’s Gambit Accepted course</strong><small>Play as Black · Choose a 13-line or 51-line track</small></span>
+            <span class="library-course-caption">View course</span>
+          </a>
+          <div class="tile-grid" id="library-list"></div>
+        </section>
+        <section id="variations-page" class="page" hidden>
+          <div class="page-heading variation-page-heading">
+            <div><p class="variation-page-label">Opening variations</p><h1 id="variations-heading"></h1><p id="variations-description">Practice the response when the move order changes.</p></div>
+            <a class="button secondary" href="#library"><span data-icon="book"></span> Opening library</a>
+          </div>
+          <div id="variation-list"></div>
+        </section>
+        <section id="courses-page" class="page" hidden>
+          <div id="course-content"></div>
+        </section>
+        <section id="review-page" class="page" hidden>
+          <div class="page-heading"><div><h1>Review queue<span>.</span></h1><p>Refresh lines before they fade from memory.</p></div></div>
+          <div id="review-list"></div>
+        </section>
+        <section id="mixed-page" class="page" hidden>
+          <div class="page-heading"><div><h1>Mixed recall<span>.</span></h1><p>Find your repertoire moves without seeing the opening or line name.</p></div></div>
+          <section class="card mixed-setup" id="mixed-setup" aria-labelledby="mixed-setup-heading">
+            <h2 id="mixed-setup-heading" tabindex="-1">Start a recall test</h2>
+            <p class="memory-caption">Up to 10 positions from completed Recall drills. Older positions get priority.</p>
+            <fieldset class="mixed-options">
+              <legend>Choose positions</legend>
+              <label><input type="radio" name="mixed-pool" id="mixed-completed" checked><span><strong>Completed drills</strong><small id="mixed-completed-count"></small></span></label>
+              <label><input type="radio" name="mixed-pool" id="mixed-mastered"><span><strong>Mastered moves only</strong><small id="mixed-mastered-count"></small></span></label>
+            </fieldset>
+            <div class="mixed-start-actions">
+              <button class="button primary" id="mixed-start" type="button">Start test</button>
+              <a class="button secondary" id="mixed-practice-link" href="#practice" hidden>Go to practice</a>
+            </div>
+          </section>
+          <section id="mixed-results" aria-labelledby="mixed-results-heading" hidden>
+            <div class="card mixed-setup">
+              <h2 id="mixed-results-heading" tabindex="-1">Test results</h2>
+              <p id="mixed-score" class="mixed-score"></p>
+              <p id="mixed-breakdown" class="memory-caption"></p>
+              <div class="mixed-start-actions">
+                <button class="button primary" id="mixed-again" type="button">New test</button>
+                <a class="button secondary" href="#progress">My progress</a>
+              </div>
+            </div>
+            <div id="mixed-review"></div>
+          </section>
+        </section>
+        <section id="progress-page" class="page" hidden>
+          <div class="page-heading"><div><h1>My progress<span>.</span></h1><p>See what you remember and what to practice next.</p></div></div>
+          <div id="progress-content"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <dialog id="shortcuts-dialog">
+    <form method="dialog">
+      <div class="dialog-heading"><h2>Keyboard shortcuts</h2><button class="icon-button" aria-label="Close shortcuts"><span data-icon="close"></span></button></div>
+      <dl>
+        <div><dt>Flip board</dt><dd><kbd>F</kbd></dd></div>
+        <div><dt>Restart drill</dt><dd><kbd>R</kbd></dd></div>
+        <div><dt>Show hint</dt><dd><kbd>H</kbd></dd></div>
+        <div><dt>Navigate board</dt><dd><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></dd></div>
+        <div><dt>Select or play a square</dt><dd><kbd>Enter</kbd></dd></div>
+        <div><dt>Clear selected square</dt><dd><kbd>Esc</kbd></dd></div>
+      </dl>
+    </form>
+  </dialog>
+</body>
+</html>

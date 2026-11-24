@@ -1,0 +1,14 @@
+{
+  "name": "the-snellifier",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "check": "npm test && npm run build"
+  }
+}

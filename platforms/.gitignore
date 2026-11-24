@@ -1,0 +1,4 @@
+ios/OpeningLab/Web/
+ios/*.xcarchive/
+xcuserdata/
+*.xcuserstate
